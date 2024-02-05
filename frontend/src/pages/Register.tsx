@@ -6,14 +6,24 @@ type RegisterFormData ={
     email: string,
     password: string,
     confirmPassword: string;
-}
+};
 
 const Register = () => {
 
-    const { register , watch } = useForm<RegisterFormData>();
+    const { 
+        register , 
+          watch,
+         handleSubmit, 
+        formState: { errors },
+    } = useForm<RegisterFormData>();
+
+    const onSubmit = handleSubmit((data) => {
+
+        console.log(data);
+    });
     
     return (
-    <form className = "flex flex-col gap-5">
+    <form className = "flex flex-col gap-5" onSubmit={onSubmit}>
         
     <h2 className="text-3xl font-bold"> Create an Account</h2>
     <div className = "flex flex-col md:flex-row gap-5">
@@ -23,6 +33,11 @@ const Register = () => {
             className="border rounded w-full py-1 px-2 font-normal"
             {...register("firstName", { required: "This field is required" })}
             ></input>
+
+            {errors.firstName && (
+                <span className="text-red-500">{errors.firstName.message}</span>
+            )}
+
         </label>
         <label className ="text-gray-700 text-sm font-bold flex-1">
             Last Name
@@ -31,6 +46,10 @@ const Register = () => {
 
             {...register("lastName", { required: "This field is required" })}
             ></input>
+              {errors.lastName && (
+                <span className="text-red-500">{errors.lastName.message}</span>
+            )}
+
         </label>
 
     </div>
@@ -42,6 +61,10 @@ const Register = () => {
 
             {...register("email", { required: "This field is required" })}
             ></input>
+            {errors.email && (
+                <span className="text-red-500">{errors.email.message}</span>
+            )}
+
         </label>
     
         <label className ="text-gray-700 text-sm font-bold flex-1">
@@ -60,6 +83,10 @@ const Register = () => {
                 },
              })}
             ></input>
+               {errors.password && (
+                <span className="text-red-500">{errors.password.message}</span>
+            )}
+
         </label>
 
         <label className ="text-gray-700 text-sm font-bold flex-1">
@@ -82,7 +109,18 @@ const Register = () => {
                
              })}
             ></input>
+              {errors.confirmPassword && (
+                <span className="text-red-500">{errors.confirmPassword.message}</span>
+            )}
+
         </label>
+        <span>
+            <button 
+            type="submit"
+            className="bg-green-600 text-white p-2 font-bold hover:bg-green-500 text-xl rounded-md">
+                Create Account
+            </button>
+        </span>
     </form>
     );
 
