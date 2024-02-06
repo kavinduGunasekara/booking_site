@@ -15,6 +15,6 @@ app.use(cors());
 app.use("/api/auth",authRoutes)
 app.use("/api/users", userRoutes);
 
-app.listen(7000,() => {
+app.listen(7000, () => {
     console.log("server running on localhost:7000");
 });
