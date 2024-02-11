@@ -1,6 +1,6 @@
 const Footer=() => {
     return (
-        <div className="bg-green-500 py-10">
+        <div className="bg-green-400 py-10">
             <div className="container mx-auto flex justify-between items-center">
                 <span className="text-3xl text-white font-bold tracking-tight">
                     TravelGuide.com

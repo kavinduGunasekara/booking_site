@@ -8,7 +8,9 @@ const router = express.Router();
 
 // /api/users/register
 
-router.post("/register", [
+router.post(
+    "/register",
+     [
     check("firstName", "First Name is required").isString(),
     check("lastName", "Last Name is required").isString(),
     check("email", "Email is required").isEmail(),
@@ -40,7 +42,7 @@ async (req:Request, res: Response) => {
             { userId: user.id },
             process.env.JWT_SECRET_KEY as string,
             {
-                expiresIn:"1d" ,
+                expiresIn: "1d" ,
             }
            );
 
